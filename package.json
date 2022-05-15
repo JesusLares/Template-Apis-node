@@ -1,0 +1,15 @@
+{
+  "name": "template_apis_node",
+  "version": "0.0.0",
+  "description": "Template for APIs made in node js with a basic structure",
+  "main": "index.js",
+  "repository": "https://github.com/Jesus-Lares/Template-Apis-node.git",
+  "author": "(Jesus Lares Cotreras <jesus.lares2000@gmail.com>)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.33",
+    "ts-node": "^10.7.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.4"
+  }
+}
