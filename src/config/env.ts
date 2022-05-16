@@ -16,7 +16,7 @@ switch (process.env.NODE_ENV) {
 dotEnv.config({
   path: envPath,
 });
-console.log("hola", envPath);
+
 export default {
   port: process.env.PORT,
   ipServer: process.env.IP_SERVER,
