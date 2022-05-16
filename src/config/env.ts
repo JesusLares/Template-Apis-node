@@ -16,12 +16,10 @@ switch (process.env.NODE_ENV) {
 dotEnv.config({
   path: envPath,
 });
-
+console.log("hola", envPath);
 export default {
   port: process.env.PORT,
-  ipServer: "localhost",
+  ipServer: process.env.IP_SERVER,
   apiVersion: process.env.API_VERSION,
-  initialRoute: `/api/${process.env.API_VERSION}`,
-  databaseUrl: process.env.DATABASE_URL,
-  secretToken: process.env.SECRET,
+  initialRoute: process.env.INITIAL_ROUTE,
 };
