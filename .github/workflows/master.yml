@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - development
+      - feat/githubActions
 
 jobs:
   deploy:
