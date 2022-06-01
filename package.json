@@ -8,8 +8,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development ts-node-dev --respawn --transpile-only ./src/index.ts",
-    "lint": "eslint ./src/**/*.ts",
-    "lint:fix": "eslint ./src/**/*.ts --fix",
+    "lint": "eslint './src/**/*.ts'",
+    "lint:fix": "eslint './src/**/*.ts' --fix",
     "start": "NODE_ENV=production node build/index.js",
     "clean": "rm -rf coverage src/**/*.js src/**/*.map",
     "build": "npm run clean -rf ./build && tsc",
