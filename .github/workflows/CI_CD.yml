@@ -1,15 +1,21 @@
-name: Deploy
+name: CI/CD Pipiline
 
-on:
+on: 
   push:
     branches:
-      - master
-      - development
-      - feat/githubActions
+      - "master"
+      - "development"
+  pull_request:
+    branches:
+      - "development"
+      - "master"
+    types:
+      - "opened"
+      - "synchronize"
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     
     strategy:
       matrix:
