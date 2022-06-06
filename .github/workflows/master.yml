@@ -10,6 +10,17 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-18.04
+    
+    strategy:
+      matrix:
+        node-version: [16.x]
+    
+    env:
+      API_VERSION: ${{ secrets.STORYBOOK_TOKEN }}
+      INITIAL_ROUTE: ${{ secrets.INITIAL_ROUTE }}
+      IP_SERVER: ${{ secrets.IP_SERVER }}
+      PORT: ${{ secrets.PORT }}
+      
     steps:
       - uses: actions/checkout@v2
         with: 
@@ -23,3 +34,6 @@ jobs:
         run: npm run lint
       - name: Build
         run: npm run build
+      - name: Test
+        run: npm run test
+        
