@@ -22,7 +22,7 @@ jobs:
         node-version: [16.x]
     
     env:
-      API_VERSION: ${{ secrets.STORYBOOK_TOKEN }}
+      API_VERSION: ${{ secrets.API_VERSION }}
       INITIAL_ROUTE: ${{ secrets.INITIAL_ROUTE }}
       IP_SERVER: ${{ secrets.IP_SERVER }}
       PORT: ${{ secrets.PORT }}
