@@ -11,6 +11,7 @@
     "lint": "eslint './src/**/*.ts'",
     "lint:fix": "eslint './src/**/*.ts' --fix",
     "start": "NODE_ENV=production node build/index.js",
+    "prepare": "husky install",
     "clean": "rm -rf coverage src/**/*.js src/**/*.map",
     "build": "npm run clean -rf ./build && tsc",
     "test": "NODE_ENV=test && jest --silent --detectOpenHandles --no-cache",
