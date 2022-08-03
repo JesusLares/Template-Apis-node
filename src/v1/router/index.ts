@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import env from "../config/env";
+import env from "../../config/env";
 import routes from "./routes";
 
 export default (router: Router): void => {
@@ -8,8 +8,7 @@ export default (router: Router): void => {
     router[method](path, handler);
   });
 
-  const initialRoute = env.initialRoute || "/";
-  router.use(initialRoute, (_: Request, res: Response) => {
+  router.use(env.initialRoute, (_: Request, res: Response) => {
     res.status(200).send("Template");
   });
 };
