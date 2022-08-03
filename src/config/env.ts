@@ -18,8 +18,8 @@ dotEnv.config({
 });
 
 export default {
-  port: process.env.PORT,
-  ipServer: process.env.IP_SERVER,
-  apiVersion: process.env.API_VERSION,
-  initialRoute: process.env.INITIAL_ROUTE,
+  port: process.env.PORT || 5000,
+  ipServer: process.env.IP_SERVER || "localhost",
+  apiVersion: process.env.API_VERSION || "",
+  initialRoute: process.env.INITIAL_ROUTE || "/",
 };
