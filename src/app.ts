@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import addPlugins from "./config/addPlugins";
-import addRouter from "./v1/router";
+import addRouter from "./router";
 
 const app: Application = express();
 addPlugins(app);
