@@ -7,7 +7,7 @@ export default class UserController {
   }
 
   search(_: Request, res: Response) {
-    return res.status(200).json({ users: [] });
+    return setTimeout(() => res.status(200).json({ users: [] }), 4000);
   }
 
   findOne(req: Request, res: Response) {
