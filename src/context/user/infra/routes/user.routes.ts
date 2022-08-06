@@ -2,7 +2,6 @@ import UserController from "../controller/user.controller";
 import env from "../../../../config/env";
 import { EnumMethodRoute, IRoute } from "../../../../interface/IRoute";
 import validateToken from "../../../../middlewares/validateToken";
-import cache from "../../../../middlewares/cache";
 
 const URL_BASE = `${env.initialRoute}/client`;
 const clientController = new UserController();
@@ -39,7 +38,7 @@ const routes: IRoute[] = [
   {
     path: `${URL_BASE}/all`,
     method: EnumMethodRoute.GET,
-    handler: [cache, clientController.search],
+    handler: [clientController.search],
   },
   {
     path: URL_BASE,
