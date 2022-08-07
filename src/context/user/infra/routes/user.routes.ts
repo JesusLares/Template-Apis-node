@@ -1,7 +1,7 @@
+import env from "@config/env";
+import { EnumMethodRoute, IRoute } from "@interface/IRoute";
+import validateToken from "@middlewares/validateToken";
 import UserController from "../controller/user.controller";
-import env from "../../../../config/env";
-import { EnumMethodRoute, IRoute } from "../../../../interface/IRoute";
-import validateToken from "../../../../middlewares/validateToken";
 
 const URL_BASE = `${env.initialRoute}/client`;
 const clientController = new UserController();

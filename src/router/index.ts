@@ -1,5 +1,7 @@
 import { Router, Request, Response } from "express";
-import env from "../config/env";
+import swaggerUi from "swagger-ui-express";
+import swaggerSetup from "@config/swagger";
+import env from "@config/env";
 import routesV1 from "./v1/routes";
 
 export default (router: Router): void => {
@@ -9,7 +11,16 @@ export default (router: Router): void => {
     router[method](path, handler);
   });
 
-  router.use(env.initialRoute, (_: Request, res: Response) => {
-    res.status(200).send("Template");
-  });
+  const isInProduction = process.env.NODE_ENV === "production";
+  if (isInProduction) {
+    router.use(env.initialRoute, (_: Request, res: Response) => {
+      res.status(200).send("Template");
+    });
+  } else {
+    router.use(
+      env.initialRoute,
+      swaggerUi.serve,
+      swaggerUi.setup(swaggerSetup)
+    );
+  }
 };

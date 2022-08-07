@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { ACCESS_DENIED, BAD_REQUEST } from "../utils/errorsMessage";
+import { ACCESS_DENIED, BAD_REQUEST } from "@utils/errorsMessage";
 
 const validateToken = (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ): Response | void => {
   try {
     const token = req.header("auth-token");
