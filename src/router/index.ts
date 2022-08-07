@@ -11,16 +11,16 @@ export default (router: Router): void => {
     router[method](path, handler);
   });
 
-  const isInProduction = process.env.NODE_ENV === "production";
-  if (isInProduction) {
-    router.use(env.initialRoute, (_: Request, res: Response) => {
-      res.status(200).send("Template");
-    });
-  } else {
+  const isInDevelopment = process.env.NODE_ENV === "development";
+  if (isInDevelopment) {
     router.use(
       env.initialRoute,
       swaggerUi.serve,
       swaggerUi.setup(swaggerSetup)
     );
+  } else {
+    router.use(env.initialRoute, (_: Request, res: Response) => {
+      res.status(200).send("Template");
+    });
   }
 };
