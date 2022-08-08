@@ -4,20 +4,17 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: [
-    "airbnb-base",
-  ],
+  extends: ["airbnb-base"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: [
-    "@typescript-eslint",
-  ],
+  plugins: ["@typescript-eslint"],
   rules: {
     quotes: ["error", "double"],
     "no-shadow": "off",
+    "comma-dangle": "off",
     "no-unused-vars": "off",
     "import/extensions": [
       "error",
@@ -32,7 +29,10 @@ module.exports = {
     "import/resolver": {
       node: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
+        moduleDirectory: ["node_modules", "src/"],
+        paths: ["src"],
       },
+      typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
     },
   },
 };
