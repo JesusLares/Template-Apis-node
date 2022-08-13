@@ -26,7 +26,7 @@ export const userSchema = {
 };
 
 export const userRoutes = {
-  [`${env.initialRoute}/client`]: {
+  [`${env.initialRoute}/user`]: {
     post: {
       summary: "Crear un nuevo usuario",
       tags: ["user"],
@@ -68,7 +68,7 @@ export const userRoutes = {
       },
     },
   },
-  [`${env.initialRoute}/client/{id}`]: {
+  [`${env.initialRoute}/user/{id}`]: {
     get: {
       summary: "Obtiene el usuario por id",
       tags: ["user"],

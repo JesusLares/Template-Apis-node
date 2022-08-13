@@ -2,8 +2,16 @@ import request from "supertest";
 import env from "../src/config/env";
 import app from "../src/app";
 import httpServer from "../src/index";
+import {
+  clearDataBase,
+  closeDataBase,
+  connectMemoryDB,
+} from "../src/config/db/mongo-memory";
 
+beforeAll(() => connectMemoryDB());
+afterEach(() => clearDataBase());
 afterAll(() => {
+  closeDataBase();
   httpServer.close();
 });
 
