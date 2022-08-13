@@ -1,3 +1,4 @@
-import User from "./User";
+import { Document } from "mongoose";
+import { User } from "./User";
 
-export interface UserModel extends User {}
+export interface UserModel extends User, Document {}

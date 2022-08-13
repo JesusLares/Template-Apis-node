@@ -1,32 +1,49 @@
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from "express";
+import CreateUserUseCases from "../useCases/createUser";
+import DeleteUserUseCases from "../useCases/deleteUser";
+import FindAllUserUseCases from "../useCases/findAllUser";
+import FindOneUserUseCases from "../useCases/findOneUser";
+import FindUserByIdUseCases from "../useCases/findUserById";
+import UpdateUserUseCases from "../useCases/updateUser";
 
 export default class UserController {
-  store(_: Request, res: Response) {
-    return res.status(200).json({ name: "NameUser" });
+  async store(req: Request, res: Response): Promise<Response> {
+    const createUser = new CreateUserUseCases();
+    const user = await createUser.exec(req.body);
+    return res.status(200).json(user);
   }
 
-  search(_: Request, res: Response) {
-    return res.status(200).json({ users: [] });
+  async search(req: Request, res: Response): Promise<Response> {
+    const searchUser = new FindAllUserUseCases();
+    const user = await searchUser.exec(req.query);
+    return res.status(200).json(user);
   }
 
-  findOne(req: Request, res: Response) {
-    const searchParams = req.query;
-    return res.status(200).json({ user: searchParams });
+  async findOne(req: Request, res: Response): Promise<Response> {
+    const findOneUser = new FindOneUserUseCases();
+    const user = await findOneUser.exec(req.query);
+    return res.status(200).json(user);
   }
 
-  findById(req: Request, res: Response) {
+  async findById(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    return res.status(200).json({ userId: id });
+    const findUser = new FindUserByIdUseCases();
+    const user = await findUser.exec(id);
+    return res.status(200).json(user);
   }
 
-  update(req: Request, res: Response) {
+  async update(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    return res.status(200).json({ userUpdate: id });
+    const updateUser = new UpdateUserUseCases();
+    const user = await updateUser.exec(id, req.body);
+    return res.status(200).json(user);
   }
 
-  delete(req: Request, res: Response) {
+  async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    return res.status(200).json({ userDelete: id });
+    const deleteUser = new DeleteUserUseCases();
+    await deleteUser.exec(id);
+    return res.status(200).json({ message: "User deleted" });
   }
 }

@@ -22,4 +22,5 @@ export default {
   ipServer: process.env.IP_SERVER || "localhost",
   apiVersion: process.env.API_VERSION || "",
   initialRoute: process.env.INITIAL_ROUTE || "/",
+  mongoUrl: process.env.MONGO_URL || "",
 };

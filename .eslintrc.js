@@ -17,6 +17,8 @@ module.exports = {
     "comma-dangle": "off",
     "no-unused-vars": "off",
     "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
+    "import/no-unresolved": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

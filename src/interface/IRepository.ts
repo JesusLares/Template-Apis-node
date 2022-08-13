@@ -1,8 +1,10 @@
+import { FilterQuery } from "mongoose";
+
 export interface IRepository<T> {
   create(item: T): Promise<T>;
-  find(query: object): Promise<T>;
-  findOne(query: object): Promise<T>;
-  findById(id: string): Promise<T>;
-  update(id: string, item: T): Promise<T>;
-  delete(id: string): Promise<T>;
+  find(query: FilterQuery<T>): Promise<T[]>;
+  findOne(query: FilterQuery<T>): Promise<T | null>;
+  findById(id: string): Promise<T | null>;
+  update(id: string, item: T): Promise<T | null>;
+  delete(id: string): Promise<T | null>;
 }

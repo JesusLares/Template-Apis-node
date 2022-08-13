@@ -1,10 +1,9 @@
 import UserRepository from "@context/user/application/user.repository";
-import User from "@context/user/domain/User";
-import { UserModel } from "@context/user/domain/UserModel";
+import { User } from "@context/user/domain/User";
 
 export default class UpdateUserUseCases {
-  async exec(id: string, item: User): Promise<UserModel> {
+  async exec(id: string, item: User) {
     const userRepository = new UserRepository();
-    return UserRepository.update(id, item);
+    return userRepository.update(id, item);
   }
 }
