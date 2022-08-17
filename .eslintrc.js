@@ -16,6 +16,8 @@ module.exports = {
     "no-shadow": "off",
     "comma-dangle": "off",
     "no-unused-vars": "off",
+    "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
