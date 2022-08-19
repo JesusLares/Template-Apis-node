@@ -9,7 +9,7 @@ const notFoundUser = async (
 ) => {
   const { id } = req.params;
   const userRepository = new UserRepository();
-  const user = await userRepository.findById(id);
+  const user = await userRepository.findById(Number(id));
 
   if (!user) return res.status(404).json({ message: NOT_FOUND });
 
