@@ -2,6 +2,7 @@ import sequelize from "../../src/config/database";
 import { User } from "../../src/context/user/domain/User";
 import UserSchema from "../../src/context/user/domain/UserSchema";
 import CreateUser from "../../src/context/user/infra/useCases/createUser";
+import UserFactory from "../mocks/factories/userFactory";
 
 beforeAll(() => sequelize.sync());
 beforeEach(() => UserSchema.destroy({ truncate: true }));
@@ -9,11 +10,7 @@ afterAll(() => sequelize.close());
 
 describe("Create user useCase", () => {
   const createUser = new CreateUser();
-  const userMock = {
-    name: "Jesus lares",
-    email: "jesus@mail.com",
-    age: 20,
-  };
+  const userMock = UserFactory.createDefault();
 
   test("should return the user with the correctly name", async () => {
     const user = await createUser.exec(userMock);
