@@ -2,7 +2,7 @@ import sequelize from "../../src/config/database";
 import UserSchema from "../../src/context/user/domain/UserSchema";
 
 import CreateUser from "../../src/context/user/infra/useCases/createUser";
-import FindUser from "../../src/context/user/infra/useCases/findAllUser";
+import FindUser from "../../src/context/user/infra/useCases/findAllUsers";
 import UserFactory from "../mocks/factories/userFactory";
 
 beforeAll(() => sequelize.sync());
