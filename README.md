@@ -2,6 +2,22 @@
 
 Este template para APIs se creo en node js con una estructura basica que permite poder seguir escalando el proyecto.
 
+Para correr este proyecto, asegurate de instalar las dependencias con el comando.
+
+```
+npm install
+```
+
+Y posterior a esto, inspecciona el archivo **package.json**, el cual contiene una serie de scripts que te permiten correr el proyecto de distintas maneras.
+
+Por ahora, se tienen 3 distintos ejemplos donde se implementan distinto tipos de base de datos, las cuales son Mysql, Sqlite3 y MongoDb. Estos ejemplos los puedes encontrar en sus respetivas ramas:
+
+- ![Rama de Mongo](https://github.com/Jesus-Lares/Template-Apis-node/tree/mongoDb)
+- ![Rama de Sqlite3 ](https://github.com/Jesus-Lares/Template-Apis-node/tree/sqlite3Db)
+- ![Rama de Mysql ](https://github.com/Jesus-Lares/Template-Apis-node/tree/mysqlDB)
+
+La idea con este template es la de mover partes basicas del codigo para que sirva como esqueleto de algun proyecto.
+
 ## Arquitectura Multicapa
 
 Cada capa de la arquitectura debe incluirse en una carpeta específica .
