@@ -2,6 +2,16 @@
 
 Este template para APIs se creo en node js con una estructura basica que permite poder seguir escalando el proyecto.
 
+En esta rama se realizo un ejemplo haciendo uso de una base de datos de **MongoDb**, esto ayudara a iniciar el proyecto sin necesidad de hacer las configuraciones inicialees.
+
+Para correr este proyecto, asegurate de instalar las dependencias con el comando.
+
+```
+npm install
+```
+
+Y posterior a esto, inspecciona el archivo **package.json**, el cual contiene una serie de scripts que te permiten correr el proyecto de distintas maneras.
+
 ## Arquitectura Multicapa
 
 Cada capa de la arquitectura debe incluirse en una carpeta específica .
