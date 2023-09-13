@@ -8,14 +8,19 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --respawn --transpile-only ./src/index.ts",
-    "lint": "eslint './src/**/*.ts'",
+    "dev:windows": "set NODE_ENV=development && ts-node-dev -r tsconfig-paths/register --respawn --transpile-only ./src/index.ts",
+    "prepare": "husky install && npx ts-patch install -s",
+    "lint": "eslint \"./src/**/*.ts\"",
     "lint:fix": "eslint './src/**/*.ts' --fix",
-    "start": "NODE_ENV=production node build/index.js",
-    "prepare": "husky install",
     "clean": "rm -rf coverage src/**/*.js src/**/*.map",
-    "build": "npm run clean -rf ./build && tsc",
-    "test": "NODE_ENV=test && jest --silent --detectOpenHandles --no-cache",
-    "test:server": "NODE_ENV=test && jest --no-cache"
+    "start": "node build/src/index.js",
+    "build": "npm run clean -rf ./build && tsc --project ./",
+    "test": "NODE_ENV=test && export NODE_OPTIONS='--max-old-space-size=4096' && jest --silent --detectOpenHandles --runInBand --no-cache",
+    "test:windows": "set NODE_ENV=test && set NODE_OPTIONS=--max-old-space-size=4096 && jest --silent --detectOpenHandles --runInBand --no-cache",
+    "test:server": "NODE_ENV=test && export NODE_OPTIONS='--max-old-space-size=4096' && jest --no-cache --runInBand --detectOpenHandles",
+    "test:server:windows": "set NODE_ENV=test && jest --no-cache --runInBand --detectOpenHandles",
+    "test:watch": "npm run test:server -- --verbose --watch ",
+    "test:watch:windows": "npm run test:server:windows -- --verbose --watch "
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
@@ -38,12 +43,15 @@
     "eslint-plugin-import": "^2.26.0",
     "husky": "^8.0.1",
     "jest": "^28.1.0",
+    "prettier": "3.0.2",
     "supertest": "^6.2.3",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
+    "ts-patch": "2.1.0",
     "tsconfig-paths": "^4.1.0",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "typescript-transform-paths": "3.4.6"
   },
   "dependencies": {
     "compression": "^1.7.4",
