@@ -14,16 +14,18 @@ module.exports = {
   rules: {
     quotes: ["error", "double"],
     "no-shadow": "off",
+    "linebreak-style": "off",
     "comma-dangle": "off",
+    "no-plusplus": "off",
+    "no-param-reassign": "off",
     "no-unused-vars": "off",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        js: "never",
-        ts: "never",
-      },
-    ],
+    "object-curly-newline": "off",
+    "import/no-extraneous-dependencies": "off",
+    "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
+    "implicit-arrow-linebreak": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
   },
   settings: {
     "import/resolver": {
