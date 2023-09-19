@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  app:
+    image: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./tmp/npm:/root/.npm:z
+      - ./src:/app/src:z
+    container_name: app
+    ports:
+      - "5000:5000"
+    expose:
+      - 5000
+    restart: always
+  app-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: app-test
+    restart: on-failure

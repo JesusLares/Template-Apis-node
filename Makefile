@@ -1,21 +1,14 @@
-.PHONY = init default deps build test start-mooc-backend clean start-database start-backoffice-frontend
-
-init:
-	echo "hola"
-	npm install 
-	npm run prepare
-
-
-# Shell to use for running scripts
-SHELL := $(shell which bash)
-IMAGE_NAME := codelytv/typescript-ddd-skeleton
-SERVICE_NAME := app
-MOOC_APP_NAME := mooc
-BACKOFFICE_APP_NAME := backoffice
-
 # Test if the dependencies we need to run this Makefile are installed
 DOCKER := $(shell command -v docker)
 DOCKER_COMPOSE := $(shell command -v docker-compose)
+
+init: install-dependencies deps
+
+.PHONY: init
+install-dependencies:
+	npm install 
+	npm run prepare
+
 deps:
 ifndef DOCKER
 	@echo "Docker is not available. Please install docker"
@@ -26,16 +19,15 @@ ifndef DOCKER_COMPOSE
 	@exit 1
 endif
 
-default: build
+.PHONY: build-development
+build-development: 
+	docker compose -f docker-compose.yml build
 
-# Build image
-build:
-	docker build -t $(IMAGE_NAME):dev .
+.PHONY: start-development
+start-development:
+	docker compose -f docker-compose.yml up -d
 
-# Clean containers
-clean:
-	docker-compose down --rmi local --volumes --remove-orphans
+.PHONY: stop-development
+stop-development:
+	docker compose -f docker-compose.yml down
 
-# Start databases containers in background
-start_database:
-	docker-compose up -d mongo elasticsearch rabbitmq
