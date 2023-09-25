@@ -1,5 +1,5 @@
 import swaggerJSDoc, { OAS3Definition, OAS3Options } from "swagger-jsdoc";
-import { userSchema, userRoutes } from "@context/user/application/user.docs";
+import env from "./env";
 
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
@@ -10,7 +10,7 @@ const swaggerDefinition: OAS3Definition = {
   },
   servers: [
     {
-      url: "http://localhost:5000",
+      url: env.serverUrl,
     },
   ],
   components: {
@@ -21,11 +21,11 @@ const swaggerDefinition: OAS3Definition = {
       },
     },
     schemas: {
-      user: userSchema,
+      // Add Schemas
     },
   },
   paths: {
-    ...userRoutes,
+    // add Routes
   },
 };
 

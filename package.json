@@ -7,7 +7,7 @@
   "author": "Jesus Lares Cotreras <jesus.lares2000@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --poll -r tsconfig-paths/register --respawn --transpile-only ./src/index.ts",
+    "dev": "NODE_ENV=development && ts-node-dev --poll -r tsconfig-paths/register --respawn --transpile-only ./src/index.ts",
     "dev:windows": "set NODE_ENV=development && ts-node-dev -r tsconfig-paths/register --respawn --transpile-only ./src/index.ts",
     "prepare": "husky install && npx ts-patch install -s",
     "lint": "eslint \"./src/**/*.ts\"",

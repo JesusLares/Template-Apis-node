@@ -1,7 +1,8 @@
 import request from "supertest";
-import env from "../src/config/env";
-import app from "../src/app";
-import httpServer from "../src/index";
+
+import httpServer from "@src/index";
+import app from "@src/app";
+import env from "@config/env";
 
 afterAll(() => {
   httpServer.close();
