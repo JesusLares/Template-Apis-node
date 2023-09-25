@@ -2,13 +2,84 @@
 
 Este template para APIs se creo en node js con una estructura basica que permite poder seguir escalando el proyecto.
 
-Para correr este proyecto, asegurate de instalar las dependencias con el comando.
+## Author
+
+**JesusLares**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-jesusLares-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=101010)](https://www.linkedin.com/in/jesusLares)
+<br />
+[![Web](https://img.shields.io/badge/jesuslares.com-5865F2?style=for-the-badge&logo=dev.to&logoColor=white&labelColor=101010)](https://jesuslares.com)
+<br />
+[![Github](https://img.shields.io/badge/jesuslares-238636?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/JesusLares)
+<br />
+
+### Ejecutar la Aplicación
+
+**Utilizando make**
+
+Aqui depende de si tienes docker o no,
+
+**_Sin docker_**
+
+Unicamente corre el comando `make init` y posterior a esto puedes ejecutar la aplicación con:
+
+```bash
+# windows
+npm run dev:windows
+# linux / Mac
+npm run dev
+```
+
+**_Con docker_**
+
+Ejecuta el siguiente comando para construir y ejecutar los contenedores de Docker (el primero genera la imagen y el segundo levanta un demonio):
 
 ```
-npm install
+  make build-development
+  make start-development
 ```
 
-Y posterior a esto, inspecciona el archivo **package.json**, el cual contiene una serie de scripts que te permiten correr el proyecto de distintas maneras.
+Una vez quieras dejar de usar la app corre el comando
+
+```
+  make stop-develpoment
+```
+
+**Utilizando docker**
+
+Ejecuta el siguiente comando para construir y ejecutar los contenedores de Docker (el primero genera la imagen y el segundo levanta un demonio):
+
+```
+  docker compose -f docker-compose.yml build app
+  docker compose -f docker-compose.yml up -d app
+```
+
+Accede a la aplicación en http://localhost:5000
+
+Una vez quieras dejar de usar la app corre el comando
+
+```
+	docker compose -f docker-compose.yml down app
+```
+
+**Sin Docker:**
+
+Asegúrate de tener el archivo .env.development.
+Instala las dependencias de la aplicación y la configuracion de husky:
+
+```bash
+  npm install
+  npm run prepare
+```
+
+Ejecuta la aplicación con:
+
+```bash
+# windows
+npm run dev:windows
+# linux / Mac
+npm run dev
+```
 
 Por ahora, se tienen 3 distintos ejemplos donde se implementan distinto tipos de base de datos, las cuales son Mysql, Sqlite3 y MongoDb. Estos ejemplos los puedes encontrar en sus respetivas ramas:
 
@@ -25,20 +96,19 @@ Cada capa de la arquitectura debe incluirse en una carpeta específica .
 ```
 __tests__
 src
-├─ config
 ├─ context
-├─ interface
-├─ middlewares
-├─ utils
-├─ router
-  ├─ v1
+├─ core
+  ├─ config
+  ├─ constants
+  ├─ errors
+  ├─ interface
+  ├─ middlewares
+  ├─ router
+    ├─ v1
+  ├─ utils
 ├─ app.js
 ├─ index.js
 ```
-
-## Capa de config
-
-En esta capa se busca tener todo lo relacionado a la configuración del proyecto, dentro de esta carpeta se logra encontrar cosas como las variables de entorno, la configuración de la base de datos, plugins que se lleguen a utilizar, etc. De esta manera se puede dividir en donde se configuran la mayoría de los procesos que necesite.
 
 ## Capa de context
 
@@ -51,25 +121,13 @@ Se puede decir a grandes rasgos que esta es la capa más importante del reposito
   - UseCases: es donde se queda el código que se pueda separar, explicando esto de mejor manera se crean casos de uso para creación, búsqueda, actualización de usuario, etc. Esto con el fin de hacer que los controllers carguen con el menor código posible para su mejor entendimiento (aquí se manda a llamar a los archivos creados en application)
   - Routes: Se guardan todas las rutas que estén relacionadas con el contexto
 
-## Capa de interface
+## Capa de core
 
-Aquí es donde deben poner todo lo que pertenezca al código tipado que sea global o se utilice en distintas partes del código, esto con el fin de no repetir interfaces. A esta carpeta también se le puede llamar Domain o hacer que esté en una carpeta llamada Shared para que se comprenda mejor, pero considero que si se crea la carpeta shared, en esta deberían entrar más sub carpetas como lo pueden ser utils, config, etc.
+En esta capa se define todo lo que se comparta o pertenezca a la logica fuera del context, se agregan secciones las cuales son compartidas por todo el proyecto y no estan ligadas a una entidad en especifico.
 
-## Capa de middlewares
+Aqui se agregan las configuraciones, constantes globales, errores, helpers, interfaces, middlewares, el manejo de rutas, utilidades, etc.
 
-Una práctica común es definir los middlewares en una carpeta por separado, ya que si bien estos pueden entrar en su propio contexto, los middlewares se suelen compartir entre rutas, por ejemplo el middleware básico de validación de token, etc.
-
-Conforme el proyecto vaya creciendo se pueden dividir en sub carpetas nombrándolas con el nombre del contexto.
-
-## Capa de utils
-
-Este es el lugar para almacenar todas las funciones de utilidad definidas de forma personalizada de las que depende todo su código base. Si bien es posible que tenga sus funciones almacenadas en un solo archivo, a medida que aumenta el tamaño de su proyecto, podría verse obligado a dividirlo en varios archivos
-
-## Capa de router
-
-En esta capa se define un archivo que contenga todas sus rutas para reunirlas en un solo lugar y separarlas de cuando realmente se utilizan, se puede agregar a esto el nombre de sub carpeta de la versión en la cual se está desarrollando la ruta.
-
-Para proyectos pequeños, este enfoque puede no ser necesario. El problema radica en el hecho de que no se puede predecir la magnitud del proyecto. Es por eso que debe definir una capa diseñada para contener todos sus archivos de enrutamiento y lógica, así como el manejo de versiones. Un truco para dividir fácilmente su archivo en muchos archivos es crear uno para cada una de las rutas dependiendo sus versiones y sus contextos.
+Para proyectos pequeños, este enfoque puede no ser necesario. El problema radica en el hecho de que no se puede predecir la magnitud del proyecto. Es por eso que debe definir una capa diseñada para contener todos sus archivos de enrutamiento y lógica
 
 ## Archivos restantes en su estructura de varias capas
 
