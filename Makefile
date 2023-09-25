@@ -21,13 +21,25 @@ endif
 
 .PHONY: build-development
 build-development: 
-	docker compose -f docker-compose.yml build
+	docker compose -f docker-compose.yml build app
 
 .PHONY: start-development
 start-development:
-	docker compose -f docker-compose.yml up -d
+	docker compose -f docker-compose.yml up -d app
 
 .PHONY: stop-development
 stop-development:
-	docker compose -f docker-compose.yml down
+	docker compose -f docker-compose.yml down app
 
+
+.PHONY: build-tests
+build-tests: 
+	docker compose -f docker-compose.yml build app-test
+
+.PHONY: start-tests
+start-tests: 
+	docker compose -f docker-compose.yml up app-test
+
+.PHONY: stop-tests
+stop-tests:
+	docker compose -f docker-compose.yml down app-test

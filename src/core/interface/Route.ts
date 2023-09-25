@@ -7,8 +7,8 @@ export enum EnumMethodRoute {
   DELETE = "delete",
 }
 
-export interface IRoute {
-  path: string
-  method: EnumMethodRoute
-  handler: RequestHandler[]
+export interface Route {
+  path: string;
+  method: EnumMethodRoute;
+  handler: RequestHandler[];
 }

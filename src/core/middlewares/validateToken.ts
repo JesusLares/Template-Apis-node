@@ -1,17 +1,13 @@
 import { NextFunction, Request, Response } from "express";
-import { ACCESS_DENIED, BAD_REQUEST } from "@utils/errorsMessage";
+import { BAD_REQUEST, UNAUTHORIZED } from "@constants/message";
 
-const validateToken = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Response | void => {
+const validateToken = (req: Request, res: Response, next: NextFunction): Response | void => {
   try {
     const token = req.header("auth-token");
 
     if (!token) {
       return res.status(404).json({
-        message: ACCESS_DENIED,
+        message: UNAUTHORIZED,
       });
     }
 
